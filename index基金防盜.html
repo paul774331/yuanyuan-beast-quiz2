@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>五大基金入門懶人包｜媛媛 理財閨蜜</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+/* ══ CONTENT PROTECTION — 防止文字選取與圖片拖拉另存 ══ */
+body{
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+}
+img{
+  pointer-events:none;
+  -webkit-user-drag:none;
+  user-drag:none;
+}
+
+/* ══ SUNSET PALETTE ══
+   #BBD3DA silver sand · #8EA4B3 cadet grey
+   #E0CCB3 almond      · #EFBB8D macaroni
+   #E28F5F raw sienna  */
+:root{
+  --bg:#F5F0E8; --bg2:#EDE5D8; --card:#FFFDF8;
+  --ss:#BBD3DA; --cg:#8EA4B3; --al:#E0CCB3;
+  --mac:#EFBB8D; --rs:#E28F5F; --rs-d:#B8622E;
+  --deep:#2D4A5A;
+  --txt:#2C3A40; --txt-m:#5A6E76; --txt-l:#8A9EA6;
+  --border:#D8CFC4; --sh:rgba(44,58,64,.08); --sh-m:rgba(44,58,64,.16);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter','PingFang TC','Noto Sans TC',sans-serif;
+  background:var(--bg);color:var(--txt);line-height:1.6;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:300;
+  background:rgba(245,240,232,.96);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);height:56px;
+  display:flex;align-items:center;padding:0 2.5rem;
+  box-shadow:0 1px 18px var(--sh);}
+.n-brand{font-size:15px;font-weight:700;color:var(--deep);
+  margin-right:auto;display:flex;align-items:center;gap:8px;}
+.n-dot{width:9px;height:9px;border-radius:50%;
+  background:linear-gradient(135deg,var(--rs),var(--mac));}
+nav a{font-size:12px;color:var(--txt-m);text-decoration:none;
+  padding:0 12px;height:56px;display:inline-flex;align-items:center;
+  border-bottom:2px solid transparent;transition:all .2s;}
+nav a:hover{color:var(--rs);border-bottom-color:var(--rs);}
+
+/* HERO 2 — bold split headline with cutout photo overlapping center */
+.hero2{position:relative;min-height:100vh;max-height:920px;
+  background:var(--bg);overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;padding:6rem 2.5rem 3rem;}
+.hero2-row{position:relative;max-width:1100px;width:100%;margin:0 auto;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;}
+.hl-left,.hl-right{font-size:clamp(40px,8.5vw,118px);font-weight:900;
+  color:var(--deep);line-height:.92;letter-spacing:-.02em;white-space:nowrap;
+  position:relative;}
+.hl-left{text-align:right;z-index:1;margin-right:-28px;}
+.hl-right{text-align:left;z-index:1;margin-left:-28px;}
+.hero2-photo{position:relative;z-index:2;width:100%;max-width:380px;
+  height:auto;object-fit:contain;display:block;
+  filter:drop-shadow(0 18px 32px rgba(44,58,64,.18));}
+.hero2-photo-wrap{position:relative;}
+.hero2-photo-ghost{
+  position:absolute;top:0;left:-30px;z-index:1;width:100%;
+  opacity:.18;filter:blur(2px) grayscale(1);
+  transform:scale(1.02);pointer-events:none;}
+.hl-script{display:block;font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-weight:500;font-size:clamp(15px,1.6vw,20px);
+  color:var(--rs-d);letter-spacing:.04em;margin-bottom:10px;}
+
+/* HERO 3 — full-bleed background photo, text in the empty left frame */
+.hero3{position:relative;min-height:100vh;max-height:880px;overflow:hidden;
+  display:flex;align-items:center;}
+.hero3-bg{position:absolute;inset:0;z-index:0;
+  background-image:url('images/home2.png');
+  background-size:cover;background-position:center 25%;background-repeat:no-repeat;
+  filter:contrast(1.08) saturate(1.10) brightness(1.02);}
+.hero3-overlay{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to right,
+    rgba(229,213,204,.94) 0%,
+    rgba(229,213,204,.88) 30%,
+    rgba(229,213,204,.45) 42%,
+    rgba(229,213,204,0)   50%);}
+.hero3-content{position:relative;z-index:3;max-width:1100px;width:100%;
+  margin:0 auto;padding:0 2.5rem;}
+.hero3-h1{font-size:clamp(48px,8vw,108px);font-weight:900;color:var(--deep);
+  line-height:1.2;letter-spacing:-.02em;margin-bottom:1.5rem;}
+.hero3-sub{font-size:14px;color:var(--txt-m);line-height:1.8;
+  max-width:340px;margin-bottom:1.5rem;}
+@media(max-width:760px){
+  .hero3{align-items:flex-start;padding-top:6rem;}
+  .hero3-bg{background-position:center 15%;}
+  .hero3-overlay{background:linear-gradient(to bottom,
+    rgba(229,213,204,.92) 0%,rgba(229,213,204,.85) 55%,rgba(229,213,204,.4) 100%);}
+  .hero3-h1{font-size:clamp(40px,13vw,64px);}
+  transform:skewX(-8deg);}
+}
+.hero2-bottom{max-width:1100px;width:100%;margin:2.5rem auto 0;
+  display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;}
+.hero2-sub{font-size:14px;color:var(--txt-m);max-width:380px;line-height:1.8;}
+.hero2-badge{display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.6);border:1px solid rgba(226,143,95,.30);
+  border-radius:99px;padding:8px 20px;font-size:12.5px;font-weight:600;color:var(--rs-d);
+  box-shadow:0 3px 14px rgba(226,143,95,.12);}
+@media(max-width:720px){
+  .hero2{padding:5rem 1.25rem 2.5rem;}
+  .hl-left,.hl-right{font-size:clamp(30px,12vw,56px);margin:0;}
+  .hero2-row{grid-template-columns:1fr;justify-items:center;gap:.5rem;}
+  .hero2-photo{max-width:260px;order:0;}
+  .hl-left{order:-1;}
+  .hl-right{order:1;}
+  .hero2-bottom{flex-direction:column;align-items:flex-start;}
+}
+
+
+.hero{position:relative;overflow:hidden;min-height:100vh;max-height:920px;display:flex;}
+.hero-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(170deg,
+    #C8D8E0 0%,#D2C8B4 22%,#E2C89A 48%,
+    #D8A870 68%,#C88858 84%,#B86840 100%);}
+.hero-haze{position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 110% 55% at 50% 0%,rgba(187,211,218,.55) 0%,transparent 58%),
+    radial-gradient(ellipse 80% 45% at 80% 100%,rgba(184,104,64,.22) 0%,transparent 52%);}
+.hero-inner{max-width:1060px;width:100%;margin:0 auto;
+  display:grid;grid-template-columns:420px 1fr;
+  align-items:flex-end;padding:0 2.5rem;
+  position:relative;z-index:5;min-height:inherit;}
+
+/* Hero text — scrim is bound to this column only, never reaches the photo column */
+.h-text{padding:8rem 0 5.5rem 2.5rem;display:flex;flex-direction:column;
+  position:relative;z-index:2;}
+.h-text::before{
+  content:'';position:absolute;z-index:-1;pointer-events:none;
+  top:-3rem;bottom:-3rem;left:-1rem;right:-2.5rem;
+  background:
+    radial-gradient(ellipse 100% 75% at 25% 50%,
+      rgba(240,202,148,.0)   0%,
+      rgba(238,198,142,.55) 45%,
+      rgba(234,192,135,.90) 75%,
+      rgba(234,192,135,1)   100%);}
+.h-kicker{display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(44,74,90,.78);margin-bottom:24px;}
+.h-kicker-line{width:24px;height:1.5px;background:var(--rs);}
+.h-h1{font-size:clamp(28px,4.2vw,50px);font-weight:800;
+  color:var(--deep);line-height:1.15;margin-bottom:20px;letter-spacing:-.015em;}
+.h-h1 em{color:var(--rs-d);font-style:normal;}
+.h-badge{display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.52);backdrop-filter:blur(10px);
+  border:1px solid rgba(226,143,95,.30);border-radius:99px;
+  padding:8px 20px;font-size:12.5px;font-weight:600;color:var(--rs-d);
+  box-shadow:0 3px 14px rgba(226,143,95,.12);width:fit-content;margin-bottom:18px;}
+.h-dot{width:7px;height:7px;border-radius:50%;background:var(--rs);
+  animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.75);}}
+.h-pills{display:flex;flex-wrap:wrap;gap:7px;}
+.h-pill{font-size:11px;padding:4px 12px;border-radius:99px;
+  background:rgba(255,255,255,.38);border:1px solid rgba(255,255,255,.60);
+  color:rgba(44,74,90,.82);backdrop-filter:blur(4px);}
+
+/* Hero person — photo must be completely unobscured by text */
+.h-person{position:relative;align-self:flex-end;z-index:4;
+  height:100%;display:flex;align-items:flex-end;justify-content:flex-start;}
+.h-photo{width:100%;max-width:420px;height:auto;display:block;
+  object-fit:cover;object-position:top center;
+  mask-image:linear-gradient(to bottom,
+    black 0%,black 65%,rgba(0,0,0,.5) 80%,transparent 100%);
+  -webkit-mask-image:linear-gradient(to bottom,
+    black 0%,black 65%,rgba(0,0,0,.5) 80%,transparent 100%);
+  filter:contrast(1.04) saturate(0.92) brightness(1.01);}
+
+/* ABOUT */
+.about{background:var(--deep);padding:3.5rem 2.5rem;}
+.about-in{max-width:1060px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start;}
+.a-lbl{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mac);margin-bottom:14px;}
+.a-title{font-size:22px;font-weight:800;color:#fff;margin-bottom:18px;line-height:1.4;}
+.a-title span{color:var(--mac);}
+.a-body{font-size:14px;color:rgba(255,255,255,.66);line-height:2.0;}
+.a-body p{margin-bottom:1rem;}
+.a-body p:last-child{margin-bottom:0;}
+.a-sig{margin-top:1.5rem;padding-top:1.25rem;
+  border-top:1px solid rgba(255,255,255,.12);
+  font-size:12.5px;color:rgba(255,255,255,.38);font-style:italic;}
+.a-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.s-box{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:16px;padding:20px 22px;}
+.s-num{font-size:30px;font-weight:800;color:var(--mac);line-height:1;margin-bottom:5px;}
+.s-lbl{font-size:12px;color:rgba(255,255,255,.50);}
+
+/* LAYOUT */
+.wrap{max-width:1060px;margin:0 auto;padding:0 2rem;}
+.sec{padding:4rem 0;}
+.ey{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--rs);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.ey::before{content:'';display:block;width:20px;height:1.5px;background:var(--rs);}
+.h2{font-size:clamp(20px,3vw,28px);font-weight:800;color:var(--deep);
+  margin-bottom:12px;letter-spacing:-.01em;line-height:1.3;}
+.desc{font-size:14px;color:var(--txt-m);margin-bottom:2.5rem;max-width:580px;line-height:1.9;}
+.desc p{margin-bottom:.65rem;}
+.desc p:last-child{margin-bottom:0;}
+.hr{border:none;border-top:1px solid var(--border);margin:0;}
+
+/* FUND CARDS */
+.f-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px;}
+.f-card{background:var(--card);border-radius:20px;overflow:hidden;
+  box-shadow:0 2px 16px var(--sh);border:1px solid var(--border);
+  transition:transform .25s,box-shadow .25s;}
+.f-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px var(--sh-m);}
+.f-top{padding:20px 22px 16px;
+  background:linear-gradient(135deg,var(--bg) 0%,rgba(224,204,179,.22) 100%);
+  border-bottom:1px solid var(--border);}
+.f-idx{font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--rs);text-transform:uppercase;margin-bottom:6px;}
+.f-name{font-size:16px;font-weight:800;color:var(--deep);margin-bottom:7px;line-height:1.3;}
+.f-badge{display:inline-block;font-size:11px;font-weight:600;padding:3px 11px;
+  border-radius:99px;background:var(--rs);color:#fff;box-shadow:0 2px 6px rgba(226,143,95,.35);}
+.f-body{padding:18px 22px;}
+.f-desc{font-size:13px;color:var(--txt-m);line-height:1.8;margin-bottom:14px;}
+.f-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;}
+.f-tag{font-size:11px;padding:3px 9px;border-radius:99px;
+  background:var(--bg2);border:1px solid var(--border);color:var(--txt-m);}
+.f-verdict{display:flex;align-items:flex-start;gap:8px;
+  padding:10px 12px;background:var(--bg);border-radius:10px;border:1px solid var(--border);}
+.v-ico{font-size:14px;flex-shrink:0;}
+.v-txt{font-size:12px;line-height:1.55;color:var(--rs-d);font-weight:600;}
+
+/* CHART CARD */
+.cc{background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:1.75rem;margin-bottom:1.5rem;box-shadow:0 2px 16px var(--sh);}
+.cc-t{font-size:15px;font-weight:700;color:var(--deep);margin-bottom:4px;}
+.cc-s{font-size:12px;color:var(--txt-l);margin-bottom:1.5rem;line-height:1.7;}
+.notice{padding:14px 18px;background:rgba(226,143,95,.09);
+  border-left:2.5px solid var(--rs);border-radius:0 10px 10px 0;
+  font-size:13px;color:var(--txt-m);line-height:1.8;margin-top:16px;}
+.notice p{margin-bottom:.4rem;}
+.notice p:last-child{margin-bottom:0;}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;font-size:13px;}
+.tbl th{background:var(--bg2);color:var(--deep);font-weight:700;
+  padding:12px 14px;text-align:left;border-bottom:2px solid var(--border);}
+.tbl td{padding:12px 14px;border-bottom:1px solid var(--bg2);
+  vertical-align:middle;color:var(--txt-m);}
+.tbl tr:hover td{background:rgba(239,187,141,.08);}
+.rr5{font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;
+  background:rgba(226,143,95,.15);color:var(--rs-d);border:1px solid rgba(226,143,95,.30);}
+.rr4{font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;
+  background:rgba(142,164,179,.15);color:var(--cg);border:1px solid rgba(142,164,179,.30);}
+
+/* INDICATORS */
+.i-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
+.i-card{background:var(--card);border:1px solid var(--border);border-radius:18px;
+  padding:1.4rem;box-shadow:0 2px 12px var(--sh);transition:transform .2s,box-shadow .2s;}
+.i-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px var(--sh-m);}
+.i-num{width:34px;height:34px;border-radius:10px;margin-bottom:12px;
+  background:linear-gradient(135deg,var(--rs),var(--mac));
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:#fff;box-shadow:0 3px 8px rgba(226,143,95,.35);}
+.i-name{font-size:14px;font-weight:700;color:var(--deep);margin-bottom:7px;}
+.i-exp{font-size:12.5px;color:var(--txt-m);line-height:1.75;margin-bottom:10px;}
+.i-tip{background:var(--bg);border-left:2.5px solid var(--rs);
+  padding:8px 12px;font-size:12px;color:var(--txt-m);line-height:1.6;border-radius:0 8px 8px 0;}
+.sum-box{margin-top:1.75rem;background:var(--card);
+  border:1px solid var(--border);border-left:3px solid var(--rs);
+  border-radius:0 16px 16px 0;padding:1.5rem 1.75rem;box-shadow:0 2px 12px var(--sh);}
+.sum-t{font-size:14px;font-weight:800;color:var(--deep);margin-bottom:14px;}
+.sum-items{font-size:13.5px;color:var(--txt-m);line-height:2.2;margin-bottom:14px;}
+.sum-note{font-size:13px;color:var(--txt-l);line-height:1.85;
+  padding-top:14px;border-top:1px solid var(--border);}
+
+/* SIMULATION */
+.sim-top{background:linear-gradient(135deg,var(--deep) 0%,#3A5A6E 100%);
+  border-radius:24px;padding:2.5rem;margin-bottom:2rem;position:relative;overflow:hidden;}
+.sim-top::before{content:'';position:absolute;top:-50px;right:-50px;
+  width:260px;height:260px;border-radius:50%;
+  background:radial-gradient(circle,rgba(239,187,141,.15),transparent 70%);}
+.sim-top .ey{color:var(--mac);}
+.sim-top .ey::before{background:var(--mac);}
+.sim-t{font-size:clamp(17px,2.5vw,24px);font-weight:800;color:#fff;margin-bottom:12px;line-height:1.4;}
+.sim-d{font-size:13.5px;color:rgba(255,255,255,.62);line-height:1.9;}
+.sim-d p{margin-bottom:.65rem;}
+.sim-d p:last-child{margin-bottom:0;}
+.sim-pill{display:inline-flex;align-items:center;gap:8px;
+  background:rgba(239,187,141,.15);border:1px solid rgba(239,187,141,.25);
+  border-radius:99px;padding:6px 16px;margin-top:1.25rem;font-size:12px;color:var(--mac);}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:1.5rem;}
+.sim-card{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;
+  box-shadow:0 2px 14px var(--sh);transition:transform .2s,box-shadow .2s;}
+.sim-card:hover{transform:translateY(-4px);box-shadow:0 10px 32px var(--sh-m);}
+.sc-top{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;}
+.sc-rank{width:34px;height:34px;border-radius:10px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;}
+.sc-name{font-size:14px;font-weight:700;color:var(--deep);line-height:1.3;}
+.sc-rate{font-size:11px;color:var(--txt-l);}
+.sc-rate strong{color:var(--rs-d);}
+.sc-body{padding:16px 18px;}
+.sc-periods{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;}
+.sc-p{text-align:center;padding:10px 6px;border-radius:10px;background:var(--bg);}
+.sc-p.hi{background:linear-gradient(135deg,rgba(226,143,95,.12),rgba(239,187,141,.08));
+  border:1px solid rgba(226,143,95,.20);}
+.sc-pl{font-size:9.5px;font-weight:700;letter-spacing:.06em;color:var(--txt-l);text-transform:uppercase;margin-bottom:4px;}
+.sc-pv{font-size:13px;font-weight:800;color:var(--deep);line-height:1.2;margin-bottom:2px;}
+.sc-pg{font-size:10px;font-weight:600;color:var(--rs-d);}
+.sc-bar{height:5px;background:var(--bg2);border-radius:99px;overflow:hidden;}
+.sc-bar-f{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--rs),var(--mac));}
+.ins{background:linear-gradient(135deg,#FDF6EE,#F5EBD8);
+  border:1px solid rgba(226,143,95,.25);border-radius:20px;padding:2rem;margin-top:1.5rem;}
+.ins-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.5rem;margin-bottom:1.25rem;}
+.ins-lbl{font-size:11px;color:var(--txt-l);margin-bottom:5px;}
+.ins-val{font-size:24px;font-weight:800;color:var(--deep);line-height:1;}
+.ins-sub{font-size:11px;color:var(--rs-d);margin-top:4px;}
+.ins-note{font-size:12.5px;color:var(--txt-m);line-height:1.85;
+  padding-top:1rem;border-top:1px solid rgba(226,143,95,.2);}
+
+/* QUIZ */
+.qz{background:var(--card);border:1px solid var(--border);border-radius:24px;
+  overflow:hidden;box-shadow:0 4px 24px var(--sh);}
+.qz-hd{background:linear-gradient(135deg,var(--deep),#2A4A5A);padding:2.25rem 2.5rem 2rem;}
+.qz-hd-t{font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;}
+.qz-hd-s{font-size:13px;color:rgba(255,255,255,.60);}
+.qz-body{padding:2rem 2.5rem;}
+.qz-step{display:none;}
+.qz-step.active{display:block;}
+.qz-q{font-size:17px;font-weight:700;color:var(--deep);margin-bottom:6px;}
+.qz-qs{font-size:13px;color:var(--txt-l);margin-bottom:1.25rem;}
+.qz-opts{display:flex;flex-direction:column;gap:10px;}
+.qz-opt{display:flex;align-items:center;gap:14px;padding:14px 18px;
+  border-radius:14px;border:1.5px solid var(--border);background:var(--bg);
+  cursor:pointer;transition:all .2s;}
+.qz-opt:hover,.qz-opt.sel{border-color:var(--rs);background:rgba(226,143,95,.07);
+  box-shadow:0 3px 14px rgba(226,143,95,.15);}
+.opt-k{width:30px;height:30px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;
+  background:rgba(226,143,95,.12);border:1px solid rgba(226,143,95,.30);color:var(--rs-d);}
+.opt-t{font-size:13.5px;color:var(--txt);}
+.qz-nav{display:flex;gap:10px;margin-top:1.75rem;justify-content:flex-end;}
+.qz-btn{padding:11px 24px;border-radius:99px;border:none;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;}
+.qz-next{background:linear-gradient(135deg,var(--rs),var(--mac));color:#fff;
+  box-shadow:0 4px 14px rgba(226,143,95,.35);}
+.qz-next:hover{box-shadow:0 6px 20px rgba(226,143,95,.45);transform:translateY(-1px);}
+.qz-prev{background:transparent;color:var(--txt-l);border:1.5px solid var(--border);}
+.qz-prev:hover{background:var(--bg2);}
+.qz-prog{display:flex;gap:6px;margin-bottom:1.75rem;}
+.qz-dot{width:9px;height:9px;border-radius:50%;background:var(--border);transition:all .3s;}
+.qz-dot.on{background:var(--rs);transform:scale(1.15);}
+.res{border-radius:16px;padding:2rem;border:1.5px solid;display:none;margin-top:1rem;}
+.res.show{display:block;}
+.res-pr{display:flex;align-items:center;gap:14px;margin-bottom:1rem;}
+.res-av{width:52px;height:52px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--rs),var(--mac));
+  display:flex;align-items:center;justify-content:center;font-size:22px;
+  box-shadow:0 4px 12px rgba(226,143,95,.3);}
+.res-type{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--rs-d);margin-bottom:3px;}
+.res-name{font-size:18px;font-weight:800;color:var(--deep);}
+.res-desc{font-size:13px;color:var(--txt-m);line-height:1.85;margin-bottom:1rem;}
+.res-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:1rem;}
+.res-tag{font-size:12px;font-weight:600;padding:4px 13px;border-radius:99px;
+  background:rgba(226,143,95,.10);border:1px solid rgba(226,143,95,.30);color:var(--rs-d);}
+.res-cta{font-size:13px;color:var(--txt-l);padding-top:12px;border-top:1px solid var(--border);}
+.retry{margin-top:1rem;padding:8px 20px;border-radius:99px;
+  border:1.5px solid var(--border);background:transparent;
+  font-size:12px;color:var(--txt-l);cursor:pointer;}
+.retry:hover{background:var(--bg2);}
+
+/* APP */
+.app-sec{background:linear-gradient(160deg,#EAE0D2 0%,#F0E6D5 60%,#EBD9C2 100%);
+  border:1px solid var(--border);border-radius:24px;padding:2.5rem;
+  box-shadow:0 4px 24px var(--sh);}
+.app-in{display:grid;grid-template-columns:1fr 240px;gap:2.5rem;align-items:center;}
+.app-lbl{font-size:10.5px;font-weight:700;letter-spacing:.12em;color:var(--rs-d);
+  text-transform:uppercase;margin-bottom:10px;}
+.app-t{font-size:22px;font-weight:800;color:var(--deep);line-height:1.3;margin-bottom:10px;}
+.app-t span{color:var(--rs-d);font-size:15px;display:block;margin-top:4px;font-weight:600;}
+.app-d{font-size:13.5px;color:var(--txt-m);line-height:1.85;margin-bottom:1.25rem;}
+.app-bens{display:flex;flex-direction:column;gap:8px;margin-bottom:1.5rem;}
+.app-ben{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--txt-m);}
+.ben-dot{width:6px;height:6px;border-radius:50%;background:var(--rs);flex-shrink:0;margin-top:6px;}
+.app-btns{display:flex;flex-direction:column;gap:10px;}
+.app-btn{display:flex;align-items:center;gap:14px;padding:14px 20px;
+  border-radius:14px;text-decoration:none;transition:all .2s;border:1.5px solid;}
+.ab-ios{background:#fff;border-color:rgba(226,143,95,.40);color:var(--deep);box-shadow:0 2px 10px var(--sh);}
+.ab-ios:hover{border-color:var(--rs);box-shadow:0 5px 18px var(--sh-m);transform:translateX(4px);}
+.ab-and{background:rgba(255,255,255,.60);border-color:var(--border);color:var(--deep);}
+.ab-and:hover{border-color:rgba(226,143,95,.40);background:#fff;transform:translateX(4px);}
+.ab-ico{font-size:22px;}
+.ab-t{flex:1;}
+.ab-s{font-size:10px;color:var(--txt-l);margin-bottom:1px;}
+.ab-l{font-size:14px;font-weight:700;}
+.ab-arr{color:var(--rs);font-size:16px;font-weight:700;}
+.mock{background:#fff;border:1.5px solid rgba(226,143,95,.25);border-radius:22px;
+  padding:1.75rem;text-align:center;
+  box-shadow:0 6px 24px var(--sh),0 0 0 5px rgba(239,187,141,.15);}
+.mock-ico{width:76px;height:76px;border-radius:18px;margin:0 auto 14px;overflow:hidden;box-shadow:0 5px 14px var(--sh);}
+.mock-ico img{width:100%;height:100%;object-fit:cover;}
+.mock-n{font-size:14px;font-weight:700;color:var(--deep);margin-bottom:2px;}
+.mock-s{font-size:11px;color:var(--txt-l);margin-bottom:14px;}
+.mock-badge{display:inline-block;
+  background:linear-gradient(135deg,var(--rs),var(--mac));
+  color:#fff;font-size:11px;font-weight:700;padding:5px 16px;border-radius:99px;}
+.mock-end{display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border);}
+.mock-av{width:28px;height:28px;border-radius:50%;overflow:hidden;border:1.5px solid var(--rs);}
+.mock-av img{width:100%;height:100%;object-fit:cover;object-position:top;}
+.mock-et{font-size:11px;color:var(--txt-l);}
+.mock-en{font-weight:600;color:var(--rs-d);}
+
+/* CTA */
+.cta{background:linear-gradient(160deg,var(--deep) 0%,#2A4555 50%,#1E3340 100%);
+  padding:5rem 2rem;text-align:center;position:relative;overflow:hidden;}
+.cta::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--rs),var(--mac),var(--ss));}
+.cta-av{width:88px;height:88px;border-radius:50%;overflow:hidden;margin:0 auto 1.5rem;
+  border:3px solid var(--rs);
+  box-shadow:0 0 0 6px rgba(226,143,95,.20),0 8px 28px rgba(0,0,0,.30);}
+.cta-av img{width:100%;height:100%;object-fit:cover;object-position:top;}
+.cta-t{font-size:28px;font-weight:800;color:#fff;margin-bottom:12px;letter-spacing:-.01em;}
+.cta-s{font-size:14px;color:rgba(255,255,255,.55);margin-bottom:2.5rem;line-height:1.9;}
+.cta-btn{display:inline-block;
+  background:linear-gradient(135deg,var(--rs),var(--mac));
+  color:#fff;font-size:15px;font-weight:700;padding:15px 44px;border-radius:99px;
+  text-decoration:none;box-shadow:0 5px 22px rgba(226,143,95,.40);transition:all .2s;
+  border:1px solid rgba(255,255,255,.15);}
+.cta-btn:hover{box-shadow:0 10px 30px rgba(226,143,95,.55);transform:translateY(-2px);}
+.cta-note{font-size:12px;color:rgba(255,255,255,.35);margin-top:16px;}
+.legal{background:var(--bg);padding:1.75rem 2rem;font-size:11px;
+  color:var(--txt-l);line-height:1.9;text-align:center;border-top:1px solid var(--border);}
+
+@media(max-width:720px){
+  .hero-inner{grid-template-columns:1fr;min-height:auto;}
+  .h-person{display:none;}
+  .h-text{padding:4rem 0 3rem;}
+  .about-in{grid-template-columns:1fr;}
+  .app-in{grid-template-columns:1fr;}
+  .mock{display:none;}
+  nav{padding:0 1rem;}
+  nav a{display:none;}
+  nav a:last-child{display:none;}
+  .sec{padding:2.75rem 0;}
+  .sim-top,.qz-body,.qz-hd{padding:1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="n-brand"><div class="n-dot"></div>媛媛 理財閨蜜</div>
+  <a href="#about">關於媛媛</a>
+  <a href="#funds">五大基金</a>
+  <a href="#perf">績效</a>
+  <a href="#ind">指標</a>
+  <a href="#sim">模擬試算</a>
+  <a href="#quiz">找方向</a>
+  <a href="#app">APP</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero3">
+  <div class="hero3-bg"></div>
+  <div class="hero3-overlay"></div>
+  <div class="hero3-content">
+    <span class="hl-script">finance, simplified</span>
+    <h1 class="hero3-h1">基金新手<br>先看這篇</h1>
+    <p class="hero3-sub">入門懶人包，先搞懂怎麼選，才不容易踩雷。</p>
+    <div class="hero2-badge"><div class="h-dot"></div>媛媛 · 專屬理財閨蜜</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-in">
+    <div>
+      <div class="a-lbl">關於媛媛 🪐</div>
+      <div class="a-title">你的理財閨蜜，<span>陪你把每一分努力賺來的錢，<br>都安排到適合的位置。</span></div>
+      <div class="a-body">
+        <p>我相信，理財不是一直追高，也不是看到別人賺錢就跟著買，而是先了解自己的目標、生活和未來，再做適合自己的選擇。</p>
+        <p>很多人會因為股票獲利而開心，但真正留下來的財富，不只是帳面上的數字，而是懂得適時調整、做好資金配置，慢慢建立屬於自己的現金流。</p>
+        <p>短期的理財，需要判斷；長期的財富，靠的是紀律。</p>
+        <p>這份基金入門懶人包，是我替你整理好的第一份功課。希望你先看懂，再做決定；如果還有疑問，我很樂意陪你一起聊聊。</p>
+      </div>
+      <div class="a-sig">—— 媛媛</div>
+    </div>
+    <div class="a-stats">
+      <div class="s-box"><div class="s-num">5支</div><div class="s-lbl">精選基金解析</div></div>
+      <div class="s-box"><div class="s-num">10年</div><div class="s-lbl">複利模擬試算</div></div>
+      <div class="s-box"><div class="s-num">6個</div><div class="s-lbl">指標看懂選基金</div></div>
+      <div class="s-box"><div class="s-num">3題</div><div class="s-lbl">找到你的投資方向</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+<!-- FUNDS -->
+<section class="sec" id="funds">
+  <div class="ey">五大基金特點</div>
+  <h2 class="h2">同樣都是基金＿差別其實比你想像的大</h2>
+  <div class="desc">
+    <p>每一支基金，都有自己的個性。</p>
+    <p>了解它投資什麼、適合誰，才能找到真正適合自己的配置。</p>
+  </div>
+  <div class="f-grid">
+    <div class="f-card"><div class="f-top"><div class="f-idx">01 · 台股科技 主動式</div><div class="f-name">安聯台灣科技基金</div><span class="f-badge">主動選股</span></div><div class="f-body"><p class="f-desc">聚焦台灣半導體＋電子供應鏈，由專業經理人主動挑股。2026 年理柏台灣基金獎得主，AI 題材直接受惠，適合積極參與台灣科技成長的投資人。</p><div class="f-tags"><span class="f-tag">RR5 高風險</span><span class="f-tag">台幣計價</span><span class="f-tag">AI 直接受惠</span></div><div class="f-verdict"><span class="v-ico">🎯</span><span class="v-txt">積極型・相信台灣科技長線・可承受短期大幅波動</span></div></div></div>
+    <div class="f-card"><div class="f-top"><div class="f-idx">02 · 台股科技 老牌主動</div><div class="f-name">統一奔騰基金</div><span class="f-badge">老牌科技</span></div><div class="f-body"><p class="f-desc">1998 年成立，穿越科技泡沫、金融海嘯、COVID 等多次重大危機。近一年報酬 224%，規模逾 448 億，台灣科技基金中的「活歷史」。</p><div class="f-tags"><span class="f-tag">RR5 高風險</span><span class="f-tag">成立 28 年</span><span class="f-tag">長期績效王</span><span class="f-tag">規模 448 億</span></div><div class="f-verdict"><span class="v-ico">⏳</span><span class="v-txt">長期持有・信任歷史驗證・定期定額、不常看盤</span></div></div></div>
+    <div class="f-card"><div class="f-top"><div class="f-idx">03 · 台股全市場 主動</div><div class="f-name">安聯台灣大壩基金</div><span class="f-badge">全市場選股</span></div><div class="f-body"><p class="f-desc">採主動選股策略，不受單一產業限制，以「品質、成長、價值」三大原則挑選台灣優質企業。雖可布局金融、傳產與科技等各產業，但近年仍以科技股為主要核心配置，適合希望由專業團隊靈活掌握台股機會的投資人。</p><div class="f-tags"><span class="f-tag">RR4</span><span class="f-tag">台幣計價</span><span class="f-tag">產業彈性配置</span></div><div class="f-verdict"><span class="v-ico">⚖️</span><span class="v-txt">穩健型・不想單押科技・想全面參與台股</span></div></div></div>
+    <div class="f-card"><div class="f-top"><div class="f-idx">04 · 被動式 ETF</div><div class="f-name">元大台灣 50（0050）</div><span class="f-badge">指數追蹤</span></div><div class="f-body"><p class="f-desc">買一支等於同時持有台灣前 50 大企業，費用最低（約 0.46%），自動汰弱留強。2026 年規模突破 2 兆，換股新增 AI 供應鏈，持續跟上時代。</p><div class="f-tags"><span class="f-tag">RR4</span><span class="f-tag">費用最低 0.46%</span><span class="f-tag">規模 2 兆+</span><span class="f-tag">新手首選</span></div><div class="f-verdict"><span class="v-ico">🌱</span><span class="v-txt">初學者・不想選股・追求低費用長期複利</span></div></div></div>
+    <div class="f-card"><div class="f-top"><div class="f-idx">05 · 境外科技 主動</div><div class="f-name">貝萊德世界科技基金 A2</div><span class="f-badge">全球科技</span></div><div class="f-body"><p class="f-desc">投資 NVIDIA、Apple、Meta 等全球科技龍頭，美元計價。讓資金不只待在台灣，同步參與美國、歐洲科技公司成長，是台股佈局的全球延伸。</p><div class="f-tags"><span class="f-tag">RR4</span><span class="f-tag">美元計價</span><span class="f-tag">全球分散</span><span class="f-tag">匯差機會</span></div><div class="f-verdict"><span class="v-ico">🌐</span><span class="v-txt">已有台股部位・想跨市場分散・有美元需求的人</span></div></div></div>
+  </div>
+</section>
+<hr class="hr">
+
+<!-- PERFORMANCE -->
+<section class="sec" id="perf">
+  <div class="ey">績效比較</div>
+  <h2 class="h2">別急著看誰賺最多 👇</h2>
+  <div class="desc">
+    <p>先看懂每一份報酬背後，承擔了多少風險。</p>
+    <p>真正適合你的基金，不一定是績效<strong>【 第一名 】</strong>——而是能陪你安心持有很久的那一支。</p>
+  </div>
+  <div class="cc">
+    <div class="cc-t">近一年含息報酬率（2025–2026）</div>
+    <div class="cc-s">資料來源：各基金公開資料截至 2026/06，部分為估算值。過去績效不代表未來保證。</div>
+    <div style="position:relative;width:100%;height:280px;"><canvas id="perfChart"></canvas></div>
+    <div class="notice">
+      <p>⚠️ 報酬率高的不一定最適合你。</p>
+      <p>統一奔騰今年最高，但它同樣可能在某年跌最多。重點是你能不能撐住那個下跌的心情。</p>
+    </div>
+  </div>
+  <div class="cc">
+    <div class="cc-t">最後幫你整理成一張圖 📈</div>
+    <div class="cc-s">💌 收藏起來，以後選基金時直接打開看。</div>
+    <div style="overflow-x:auto;">
+      <table class="tbl">
+        <thead><tr><th>基金名稱</th><th>類型</th><th>計價幣別</th><th>風險</th><th>費用/年</th><th>成立年數</th><th>適合族群</th></tr></thead>
+        <tbody>
+          <tr><td style="font-weight:700;color:var(--deep);">安聯台灣科技</td><td>主動・台股科技</td><td>新台幣</td><td><span class="rr5">RR5</span></td><td>~1.7%</td><td>約20年</td><td>積極型</td></tr>
+          <tr><td style="font-weight:700;color:var(--deep);">統一奔騰</td><td>主動・台股科技</td><td>新台幣</td><td><span class="rr5">RR5</span></td><td>~1.6%</td><td>28年</td><td>長期持有族</td></tr>
+          <tr><td style="font-weight:700;color:var(--deep);">安聯台灣大壩</td><td>主動・台股全市場</td><td>新台幣</td><td><span class="rr4">RR4</span></td><td>~1.7%</td><td>約20年</td><td>穩健分散型</td></tr>
+          <tr><td style="font-weight:700;color:var(--deep);">元大 0050</td><td>被動・ETF</td><td>新台幣</td><td><span class="rr4">RR4</span></td><td>~0.46%</td><td>22年</td><td>入門・低費用族</td></tr>
+          <tr><td style="font-weight:700;color:var(--deep);">貝萊德世界科技 A2</td><td>主動・全球科技</td><td>美元</td><td><span class="rr4">RR4</span></td><td>~1.75%</td><td>約26年</td><td>全球分散族</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<hr class="hr">
+
+<!-- INDICATORS -->
+<section class="sec" id="ind">
+  <div class="ey">看懂指標</div>
+  <h2 class="h2">同樣一張基金資料<br>高手跟新手看的地方完全不同。</h2>
+  <div class="desc">
+    <p>先看懂這 6 個關鍵指標，以後看基金，就知道重點在哪裡。</p>
+    <p>👇 一起往下看。</p>
+  </div>
+  <div class="i-grid">
+    <div class="i-card"><div class="i-num">01</div><div class="i-name">近期報酬率</div><p class="i-exp">1個月、3個月、1年各漲了多少。數字越高代表這段期間賺越多，但這是「過去」的數字，不保證未來重演。</p><div class="i-tip">看法：報酬率高的不一定最適合你，要搭配波動度一起評估才完整。</div></div>
+    <div class="i-card"><div class="i-num">02</div><div class="i-name">標準差（波動度）</div><p class="i-exp">衡量基金淨值的「起伏幅度」。標準差30代表一年內漲跌幅可能各30%。數字越大，坐雲霄飛車的感覺越強。</p><div class="i-tip">能睡得著才買標準差大的。0050約18，科技型基金約28–35。</div></div>
+    <div class="i-card"><div class="i-num">03</div><div class="i-name">夏普值（Sharpe）</div><p class="i-exp">每承擔1單位風險，能換來多少報酬。夏普值越高代表「冒同樣的險，賺得比較划算」。大於1.0就不錯，大於2.0很好。</p><div class="i-tip">兩支報酬相近，選夏普值更高的——你的風險沒有被浪費。</div></div>
+    <div class="i-card"><div class="i-num">04</div><div class="i-name">基金規模</div><p class="i-exp">市場上有多少人的錢在這支基金裡。規模越大代表被清算機率低、贖回流動性佳、機構投資人也信任它。</p><div class="i-tip">規模低於5億要謹慎；超過50億通常穩定。0050已突破2兆。</div></div>
+    <div class="i-card"><div class="i-num">05</div><div class="i-name">成立年數</div><p class="i-exp">基金活了幾年。越久代表撐過越多次危機，是時間給的認證。撐過2008金融海嘯的基金，你知道它有多硬。</p><div class="i-tip">成立超過10年且長期績效穩定的優先考慮。</div></div>
+    <div class="i-card"><div class="i-num">06</div><div class="i-name">管理費（費用率）</div><p class="i-exp">每年從你資產中收取的費用。主動式基金約1.5–1.8%，被動ETF約0.3–0.5%。長期下來費用差距非常可觀。</p><div class="i-tip">投100萬，費用差1%，10年後差距超過10萬。不要小看每個百分點。</div></div>
+  </div>
+  <div class="sum-box">
+    <div class="sum-t">✦ 新手先看這三個就夠了</div>
+    <div class="sum-items">
+      ✔ <strong style="color:var(--rs-d);">近一年報酬</strong>｜最近表現如何？<br>
+      ✔ <strong style="color:var(--rs-d);">標準差</strong>｜波動是不是自己能接受？<br>
+      ✔ <strong style="color:var(--rs-d);">成立年數</strong>｜是否經過市場考驗？
+    </div>
+    <div class="sum-note">不用一次把所有指標都學會，先把這三個看懂，挑基金就更有方向。</div>
+  </div>
+</section>
+<hr class="hr">
+
+<!-- SIMULATION -->
+<section class="sec" id="sim">
+  <div class="sim-top">
+    <div class="ey">定期定額模擬試算</div>
+    <div class="sim-t">時間，往往比追高報酬更有力量。</div>
+    <div class="sim-d">
+      <p>假設每個月固定投入 10,000 元，不急著猜高低點，而是持續累積。</p>
+      <p>透過歷史年化報酬率試算，一起看看不同基金在 1 年、5 年、10 年可能產生的累積差異。</p>
+    </div>
+    <div class="sim-pill">📌 每月定期投入 <strong style="margin:0 4px;">$10,000</strong>，採月複利計算，報酬為費後年化估算</div>
+  </div>
+  <div class="sim-grid">
+        <div class="sim-card">
+      <div class="sc-top">
+        <div class="sc-rank" style="background:linear-gradient(135deg,#2D5A6B,#4A8A9E);">01</div>
+        <div>
+          <div class="sc-name">統一奔騰</div>
+          <div class="sc-rate">年化估算 <strong>~14%</strong>（費後）</div>
+        </div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-periods">
+          <div class="sc-p">
+            <div class="sc-pl">1 年</div>
+            <div class="sc-pv">$129,501</div>
+            <div class="sc-pg">+$9,501</div>
+          </div>
+          <div class="sc-p hi">
+            <div class="sc-pl">5 年</div>
+            <div class="sc-pv">$872,007</div>
+            <div class="sc-pg">+$272,007</div>
+          </div>
+          <div class="sc-p">
+            <div class="sc-pl">10 年</div>
+            <div class="sc-pv">$2,620,914</div>
+            <div class="sc-pg">+$1,420,914</div>
+          </div>
+        </div>
+        <div class="sc-bar"><div class="sc-bar-f" style="width:100%;"></div></div>
+      </div>
+    </div>
+    <div class="sim-card">
+      <div class="sc-top">
+        <div class="sc-rank" style="background:linear-gradient(135deg,#3A7A8C,#6AAABE);">02</div>
+        <div>
+          <div class="sc-name">安聯台灣科技</div>
+          <div class="sc-rate">年化估算 <strong>~12%</strong>（費後）</div>
+        </div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-periods">
+          <div class="sc-p">
+            <div class="sc-pl">1 年</div>
+            <div class="sc-pv">$128,093</div>
+            <div class="sc-pg">+$8,093</div>
+          </div>
+          <div class="sc-p hi">
+            <div class="sc-pl">5 年</div>
+            <div class="sc-pv">$824,864</div>
+            <div class="sc-pg">+$224,864</div>
+          </div>
+          <div class="sc-p">
+            <div class="sc-pl">10 年</div>
+            <div class="sc-pv">$2,323,391</div>
+            <div class="sc-pg">+$1,123,391</div>
+          </div>
+        </div>
+        <div class="sc-bar"><div class="sc-bar-f" style="width:88%;"></div></div>
+      </div>
+    </div>
+    <div class="sim-card">
+      <div class="sc-top">
+        <div class="sc-rank" style="background:linear-gradient(135deg,#8EA4B3,#A8C0CC);">03</div>
+        <div>
+          <div class="sc-name">貝萊德世界科技</div>
+          <div class="sc-rate">年化估算 <strong>~11%</strong>（費後）</div>
+        </div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-periods">
+          <div class="sc-p">
+            <div class="sc-pl">1 年</div>
+            <div class="sc-pv">$127,396</div>
+            <div class="sc-pg">+$7,396</div>
+          </div>
+          <div class="sc-p hi">
+            <div class="sc-pl">5 年</div>
+            <div class="sc-pv">$802,470</div>
+            <div class="sc-pg">+$202,470</div>
+          </div>
+          <div class="sc-p">
+            <div class="sc-pl">10 年</div>
+            <div class="sc-pv">$2,189,873</div>
+            <div class="sc-pg">+$989,873</div>
+          </div>
+        </div>
+        <div class="sc-bar"><div class="sc-bar-f" style="width:83%;"></div></div>
+      </div>
+    </div>
+    <div class="sim-card">
+      <div class="sc-top">
+        <div class="sc-rank" style="background:linear-gradient(135deg,#C4713E,#E28F5F);">04</div>
+        <div>
+          <div class="sc-name">元大0050</div>
+          <div class="sc-rate">年化估算 <strong>~10%</strong>（費後）</div>
+        </div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-periods">
+          <div class="sc-p">
+            <div class="sc-pl">1 年</div>
+            <div class="sc-pv">$126,703</div>
+            <div class="sc-pg">+$6,703</div>
+          </div>
+          <div class="sc-p hi">
+            <div class="sc-pl">5 年</div>
+            <div class="sc-pv">$780,824</div>
+            <div class="sc-pg">+$180,824</div>
+          </div>
+          <div class="sc-p">
+            <div class="sc-pl">10 年</div>
+            <div class="sc-pv">$2,065,520</div>
+            <div class="sc-pg">+$865,520</div>
+          </div>
+        </div>
+        <div class="sc-bar"><div class="sc-bar-f" style="width:78%;"></div></div>
+      </div>
+    </div>
+    <div class="sim-card">
+      <div class="sc-top">
+        <div class="sc-rank" style="background:linear-gradient(135deg,#AB9072,#EFBB8D);">05</div>
+        <div>
+          <div class="sc-name">安聯台灣大壩</div>
+          <div class="sc-rate">年化估算 <strong>~9%</strong>（費後）</div>
+        </div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-periods">
+          <div class="sc-p">
+            <div class="sc-pl">1 年</div>
+            <div class="sc-pv">$126,014</div>
+            <div class="sc-pg">+$6,014</div>
+          </div>
+          <div class="sc-p hi">
+            <div class="sc-pl">5 年</div>
+            <div class="sc-pv">$759,898</div>
+            <div class="sc-pg">+$159,898</div>
+          </div>
+          <div class="sc-p">
+            <div class="sc-pl">10 年</div>
+            <div class="sc-pv">$1,949,656</div>
+            <div class="sc-pg">+$749,656</div>
+          </div>
+        </div>
+        <div class="sc-bar"><div class="sc-bar-f" style="width:74%;"></div></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="cc">
+    <div class="cc-t">10 年後累積總額比較（每月投入 $10,000）</div>
+    <div class="cc-s">投入本金合計 $1,200,000 · 差額來自複利效果</div>
+    <div style="position:relative;width:100%;height:300px;"><canvas id="simChart"></canvas></div>
+  </div>
+  <div class="ins">
+        <div class="ins-grid">
+      <div>
+        <div class="ins-lbl">10年投入本金</div>
+        <div class="ins-val">$1,200,000</div>
+        <div class="ins-sub">每月 $10,000 × 120 個月</div>
+      </div>
+      <div>
+        <div class="ins-lbl">統一奔騰（最高）10年後</div>
+        <div class="ins-val">$2,620,914</div>
+        <div class="ins-sub">增值 +$1,420,914（118%）</div>
+      </div>
+      <div>
+        <div class="ins-lbl">安聯台灣大壩（最穩）10年後</div>
+        <div class="ins-val">$1,949,656</div>
+        <div class="ins-sub">增值 +$749,656（62%）</div>
+      </div>
+      <div>
+        <div class="ins-lbl">最高 vs 最低差距</div>
+        <div class="ins-val">$671,258</div>
+        <div class="ins-sub">同樣每月一萬，10年差近 67 萬</div>
+      </div>
+    </div>
+    <div class="ins-note">📌 <strong>閨蜜的小貼士：</strong>這些數據是根據目前可取得的歷史資料模擬計算，每一期的市場狀況都可能不同，實際投資結果會受到市場波動、投入時間與投資策略影響，因此僅供參考，不代表未來一定能獲得相同報酬。</div>
+  </div>
+</section>
+<hr class="hr">
+
+<!-- QUIZ -->
+<section class="sec" id="quiz">
+  <div class="ey">找到你的方向</div>
+  <h2 class="h2">我適合哪個方向？</h2>
+  <div class="desc"><p>三個問題，幫你認識自己的投資輪廓。這不是推薦，是幫你想清楚。</p></div>
+  <div class="qz">
+    <div class="qz-hd"><div class="qz-hd-t">投資性格小測驗</div><div class="qz-hd-s">選出最接近你真實想法的答案，第一反應最準。</div></div>
+    <div class="qz-body">
+      <div class="qz-prog"><div class="qz-dot" id="dot0"></div><div class="qz-dot" id="dot1"></div><div class="qz-dot" id="dot2"></div></div>
+      <div class="qz-step active" id="step0">
+        <div class="qz-q">Q1 ／ 基金一個月跌了 20%，你會？</div><div class="qz-qs">不是測試對不對，是看你的真實反應。</div>
+        <div class="qz-opts">
+          <div class="qz-opt" onclick="pick(0,'A')"><div class="opt-k">A</div><div class="opt-t">加碼買進！跌越多越興奮，這就是買便宜的機會</div></div>
+          <div class="qz-opt" onclick="pick(0,'B')"><div class="opt-k">B</div><div class="opt-t">有點擔心，但會撐著，相信長期，不輕易賣出</div></div>
+          <div class="qz-opt" onclick="pick(0,'C')"><div class="opt-k">C</div><div class="opt-t">開始失眠，認真考慮停損出場</div></div>
+          <div class="qz-opt" onclick="pick(0,'D')"><div class="opt-k">D</div><div class="opt-t">這種波動本來就不適合我，我選錯商品了</div></div>
+        </div>
+        <div class="qz-nav"><button class="qz-btn qz-next" onclick="nxt(1)" id="nx0" disabled>下一題 →</button></div>
+      </div>
+      <div class="qz-step" id="step1">
+        <div class="qz-q">Q2 ／ 你的投資目標比較靠近哪個？</div><div class="qz-qs">沒有對錯，只是方向不同。</div>
+        <div class="qz-opts">
+          <div class="qz-opt" onclick="pick(1,'A')"><div class="opt-k">A</div><div class="opt-t">10年後翻倍，我願意等，也願意承擔起伏</div></div>
+          <div class="qz-opt" onclick="pick(1,'B')"><div class="opt-k">B</div><div class="opt-t">每年穩定成長5–8%，不求暴富，不要大跌</div></div>
+          <div class="qz-opt" onclick="pick(1,'C')"><div class="opt-k">C</div><div class="opt-t">退休後每月有現金流進來，不靠薪水也能生活</div></div>
+          <div class="qz-opt" onclick="pick(1,'D')"><div class="opt-k">D</div><div class="opt-t">還在搞清楚概念，目前沒有明確方向</div></div>
+        </div>
+        <div class="qz-nav"><button class="qz-btn qz-prev" onclick="prv(0)">← 上一題</button><button class="qz-btn qz-next" onclick="nxt(2)" id="nx1" disabled>下一題 →</button></div>
+      </div>
+      <div class="qz-step" id="step2">
+        <div class="qz-q">Q3 ／ 每月大概能固定拿出多少做投資？</div><div class="qz-qs">這影響你適合什麼樣的佈局方式。</div>
+        <div class="qz-opts">
+          <div class="qz-opt" onclick="pick(2,'A')"><div class="opt-k">A</div><div class="opt-t">3,000 以下，先從小的開始</div></div>
+          <div class="qz-opt" onclick="pick(2,'B')"><div class="opt-k">B</div><div class="opt-t">3,000–10,000，穩定但有限</div></div>
+          <div class="qz-opt" onclick="pick(2,'C')"><div class="opt-k">C</div><div class="opt-t">10,000–30,000，有餘裕，想更系統化規劃</div></div>
+          <div class="qz-opt" onclick="pick(2,'D')"><div class="opt-k">D</div><div class="opt-t">30,000 以上，想完整規劃現金流結構</div></div>
+        </div>
+        <div class="qz-nav"><button class="qz-btn qz-prev" onclick="prv(1)">← 上一題</button><button class="qz-btn qz-next" onclick="showRes()" id="nx2" disabled>看我的方向 ✦</button></div>
+      </div>
+      <div id="results" style="display:none;">
+        <div id="r-agg" class="res" style="background:rgba(226,143,95,.07);border-color:rgba(226,143,95,.30);"><div class="res-pr"><div class="res-av">🚀</div><div><div class="res-type">積極成長型</div><div class="res-name">主動高波動基金</div></div></div><p class="res-desc">你的心態適合主動式科技基金。安聯台灣科技或統一奔騰的波動對你不是阻力，是機會。建議持有至少3年以上，讓時間幫你平滑短期波動，也可搭配貝萊德世界科技做全球分散。</p><div class="res-tags"><span class="res-tag">✦ 安聯台灣科技</span><span class="res-tag">✦ 統一奔騰</span><span class="res-tag">+ 貝萊德世界科技 A2</span></div><div class="res-cta">具體比例要看你的整體資金結構。想聊聊怎麼配？私訊媛媛「基金」 👋</div><button class="retry" onclick="resetQ()">重新測驗</button></div>
+        <div id="r-bal" class="res" style="background:var(--bg);border-color:var(--border);"><div class="res-pr"><div class="res-av">⚖️</div><div><div class="res-type">穩健搭配型</div><div class="res-name">主動 + 被動搭配</div></div></div><p class="res-desc">0050 作為核心部位打底，搭配一支主動式基金增加爆發力。這樣的組合很多中等風險投資人採用，在穩定中保留成長空間。</p><div class="res-tags"><span class="res-tag">✦ 元大 0050 核心</span><span class="res-tag">+ 統一奔騰或安聯科技</span></div><div class="res-cta">主動被動各佔多少比例要看你的收入狀況。私訊媛媛「基金」幫你想 👋</div><button class="retry" onclick="resetQ()">重新測驗</button></div>
+        <div id="r-cf" class="res" style="background:var(--bg);border-color:var(--border);"><div class="res-pr"><div class="res-av">💰</div><div><div class="res-type">現金流規劃型</div><div class="res-name">現金流優先佈局</div></div></div><p class="res-desc">你的目標是「每月有現金流進來」，這跟純粹追求報酬率不同。投資型保單的現金流規劃，結合基金投資，可能更符合你的需求。這正是媛媛最擅長的部分。</p><div class="res-tags"><span class="res-tag">✦ 安聯台灣大壩</span><span class="res-tag">+ 元大 0050</span><span class="res-tag">+ 現金流保單規劃</span></div><div class="res-cta">私訊媛媛「現金流」，她幫你把錢排好 👋</div><button class="retry" onclick="resetQ()">重新測驗</button></div>
+        <div id="r-st" class="res" style="background:var(--bg);border-color:var(--border);"><div class="res-pr"><div class="res-av">🌱</div><div><div class="res-type">起步探索型</div><div class="res-name">先從 0050 開始</div></div></div><p class="res-desc">還在摸索完全正常。先用 0050 定期定額建立持有習慣，透過基富通 APP 申購最方便，集保配合銀行帳戶不需匯費。有感覺了再逐步加入主動式基金。</p><div class="res-tags"><span class="res-tag">✦ 元大 0050 入門首選</span><span class="res-tag">基富通 APP 申購</span></div><div class="res-cta">有任何問題都可以問。私訊媛媛「基金」，她幫你從零想清楚 👋</div><button class="retry" onclick="resetQ()">重新測驗</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+<hr class="hr">
+
+<!-- APP -->
+<section class="sec" id="app">
+  <div class="ey">新手友善工具推薦</div>
+  <h2 class="h2">幫自己準備一個好上手的工具。</h2>
+  <div class="desc"><p> 讓理財變簡單 </p></div>
+  <div class="app-sec">
+    <div class="app-in">
+      <div>
+        <div class="app-lbl">✦ 理財閨蜜推薦</div>
+        <div class="app-t">第一次接觸基金<span>很推薦先從操作簡易的平台開始。</span></div>
+        <p class="app-d">基富通是一個合法設立的基金網路銷售平台，透過約定銀行帳戶扣款即可完成定期定額或單筆投資，不需要每次另外匯款。介面清楚、操作直覺，對新手很友善，也是媛媛目前日常使用的基金平台之一。</p>
+        <div class="app-bens">
+          <div class="app-ben"><div class="ben-dot"></div>集保存摺配銀行帳戶直扣，零匯費</div>
+          <div class="app-ben"><div class="ben-dot"></div>上百支基金可選，含本次推薦五支</div>
+          <div class="app-ben"><div class="ben-dot"></div>金管會核准正規平台，安全有保障</div>
+          <div class="app-ben"><div class="ben-dot"></div>定期定額最低 1,000 元起，小資族友善</div>
+          <div class="app-ben"><div class="ben-dot"></div>手機 APP 操作直覺，隨時查帳方便</div>
+        </div>
+        <div class="app-btns">
+          <a class="app-btn ab-ios" href="https://apps.apple.com/tw/app/%E5%9F%BA%E5%AF%8C%E9%80%9A%E8%AD%89%E5%88%B8/id1659627613" target="_blank" rel="noopener">
+            <span class="ab-ico">🍎</span><div class="ab-t"><div class="ab-s">Download on the</div><div class="ab-l">App Store 下載</div></div><span class="ab-arr">→</span>
+          </a>
+          <a class="app-btn ab-and" href="https://play.google.com/store/apps/details?id=com.fundrich.app&pcampaignid=web_share" target="_blank" rel="noopener">
+            <span class="ab-ico">🤖</span><div class="ab-t"><div class="ab-s">Get it on</div><div class="ab-l">Google Play 下載</div></div><span class="ab-arr">→</span>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="mock">
+          <div class="mock-ico"><img src="images/p3.jpeg" alt="基富通證券"></div>
+          <div class="mock-n">基富通證券</div>
+          <div class="mock-s">台灣最大基金平台</div>
+          <div class="mock-badge">免費下載</div>
+          <div class="mock-end">
+            <div class="mock-av"><img src="images/p2.png" alt="媛媛" loading="lazy"></div>
+            <div class="mock-et"><span class="mock-en">媛媛</span> 💛 自用推薦 💛</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<!-- CTA -->
+<div class="cta">
+  <div class="cta-av"><img src="images/p2.png" alt="媛媛" loading="lazy"></div>
+  <div class="cta-t">如果還是不知道怎麼選？</div>
+  <p class="cta-s">沒關係，很多人都是從這一步開始。<br>聊聊你的目標與未來規劃，<br>我會陪你一起找到更適合自己的配置方向。</p>
+  <a class="cta-btn" href="https://line.me/R/ti/p/@746vsmst" target="_blank" rel="noopener">私訊媛媛「基金」</a>
+  <div class="cta-note">💛 把選擇交給你，把功課交給我 💛</div>
+</div>
+
+<div class="legal">
+  本文件僅供教育目的，不構成任何投資建議。基金投資有賺有賠，申購前應詳閱公開說明書。<br>
+  過去績效不代表未來保證。數據截至 2026/06，以各基金公開資料為準，部分為估算值。<br>
+  基富通為媛媛個人使用推薦，非廣告合作，請自行評估適合度。<br>
+  © 媛媛理財閨蜜・本文件版權所有，請勿未經授權轉載。
+</div>
+
+<script>
+var ans=[null,null,null];
+function pick(s,v){
+  ans[s]=v;
+  document.querySelectorAll('#step'+s+' .qz-opt').forEach(function(o){o.classList.remove('sel');});
+  event.currentTarget.classList.add('sel');
+  var b=document.getElementById('nx'+s);if(b)b.disabled=false;
+  document.getElementById('dot'+s).classList.add('on');
+}
+function nxt(n){document.getElementById('step'+(n-1)).classList.remove('active');document.getElementById('step'+n).classList.add('active');}
+function prv(n){document.getElementById('step'+(n+1)).classList.remove('active');document.getElementById('step'+n).classList.add('active');}
+function showRes(){
+  document.getElementById('step2').classList.remove('active');
+  document.getElementById('results').style.display='block';
+  var r;
+  if(ans[0]==='D'||ans[1]==='C') r='cf';
+  else if(ans[0]==='A'||(ans[0]==='B'&&ans[1]==='A')) r='agg';
+  else if(ans[1]==='D'||ans[2]==='A') r='st';
+  else r='bal';
+  ['agg','bal','cf','st'].forEach(function(id){var e=document.getElementById('r-'+id);if(e)e.classList.remove('show');});
+  var t=document.getElementById('r-'+r);if(t){t.classList.add('show');t.scrollIntoView({behavior:'smooth',block:'nearest'});}
+}
+function resetQ(){
+  ans=[null,null,null];
+  ['agg','bal','cf','st'].forEach(function(id){var e=document.getElementById('r-'+id);if(e)e.classList.remove('show');});
+  document.getElementById('results').style.display='none';
+  [0,1,2].forEach(function(i){
+    document.getElementById('step'+i).classList.remove('active');
+    document.getElementById('dot'+i).classList.remove('on');
+    var b=document.getElementById('nx'+i);if(b)b.disabled=true;
+    document.querySelectorAll('#step'+i+' .qz-opt').forEach(function(o){o.classList.remove('sel');});
+  });
+  document.getElementById('step0').classList.add('active');
+}
+window.addEventListener('DOMContentLoaded',function(){
+  var c1=document.getElementById('perfChart');
+  if(c1)new Chart(c1,{type:'bar',data:{labels:['統一奔騰','安聯台灣科技','貝萊德世界科技 A2','元大 0050','安聯台灣大壩'],datasets:[{data:[224,90,66,39.9,30],backgroundColor:['rgba(45,90,107,.85)','rgba(58,122,140,.78)','rgba(142,164,179,.78)','rgba(196,113,62,.82)','rgba(239,187,141,.82)'],borderColor:['#2D5A6B','#3A7A8C','#8EA4B3','#C4713E','#EFBB8D'],borderWidth:1.5,borderRadius:8}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.parsed.x+'%';}}}},scales:{x:{ticks:{callback:function(v){return v+'%';},color:'#8A9EA6',font:{size:11}},grid:{color:'rgba(44,58,64,.06)'}},y:{ticks:{color:'#2C3A40',font:{size:12}},grid:{display:false}}}}});
+  var c2=document.getElementById('simChart');
+  if(c2)new Chart(c2,{type:'bar',data:{labels:['統一奔騰', '安聯台灣科技', '貝萊德世界科技', '元大0050', '安聯台灣大壩'],datasets:[{label:'本金 $1,200,000',data:[1200000, 1200000, 1200000, 1200000, 1200000],backgroundColor:'rgba(187,211,218,.45)',borderColor:'rgba(187,211,218,.75)',borderWidth:1,borderRadius:{topLeft:0,topRight:0,bottomLeft:6,bottomRight:6},stack:'s'},{label:'複利增值（10年）',data:[1420914, 1123391, 989873, 865520, 749656],backgroundColor:['rgba(45,90,107,.85)','rgba(58,122,140,.75)','rgba(142,164,179,.70)','rgba(196,113,62,.80)','rgba(239,187,141,.80)'],borderColor:['#2D5A6B','#3A7A8C','#8EA4B3','#C4713E','#EFBB8D'],borderWidth:1.5,borderRadius:{topLeft:6,topRight:6,bottomLeft:0,bottomRight:0},stack:'s'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#5A6E76',font:{size:11},padding:16}},tooltip:{callbacks:{label:function(c){return ' '+c.dataset.label+': $'+c.parsed.y.toLocaleString();},footer:function(items){return '合計: $'+items.reduce(function(s,i){return s+i.parsed.y;},0).toLocaleString();}}}},scales:{x:{ticks:{color:'#2C3A40',font:{size:11}},grid:{display:false}},y:{ticks:{callback:function(v){return '$'+(v/10000).toFixed(0)+'萬';},color:'#8A9EA6',font:{size:11}},grid:{color:'rgba(44,58,64,.06)'}}}}});
+});
+</script>
+
+<!-- ══ CONTENT PROTECTION — 禁止右鍵選單與常見開發者工具快捷鍵 ══ -->
+<script>
+document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+document.addEventListener('keydown', function(e){
+  if(
+    e.key === 'F12' ||
+    (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) ||
+    (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c')) ||
+    (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j')) ||
+    (e.ctrlKey && (e.key === 'U' || e.key === 'u'))
+  ){
+    e.preventDefault();
+  }
+});
+</script>
+</body>
+</html>
